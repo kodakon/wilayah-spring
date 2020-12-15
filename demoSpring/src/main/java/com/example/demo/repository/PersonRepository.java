@@ -1,0 +1,18 @@
+package com.example.demo.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.PersonEntity;
+
+
+//BERHUBUNGAN DENGAN QUERY
+@Repository
+public interface PersonRepository extends JpaRepository<PersonEntity, Integer> {
+
+	@Query(value = "select * from person_entity where firstName = ?", nativeQuery = true)
+	List<PersonEntity> findByFirstName(String firstName);
+}
